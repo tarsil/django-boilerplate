@@ -1,0 +1,58 @@
+-   repo: git://github.com/pre-commit/pre-commit-hooks
+    sha: 5bf6c09bfa1297d3692cadd621ef95f1284e33c0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: check-ast
+    -   id: check-case-conflict
+    -   id: check-docstring-first
+    -   id: check-json
+    -   id: check-merge-conflict
+    -   id: check-xml
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: check-symlinks
+    -   id: detect-aws-credentials
+    -   id: no-commit-to-branch
+    -   id: debug-statements
+    -   id: pretty-format-json
+        args:
+        - --autofix
+        - --no-sort-keys
+    -   id: requirements-txt-fixer
+    -   id: check-added-large-files
+        args:
+        - --maxkb=128
+    -   id: flake8
+        args:
+        - --max-line-length=120
+        - --ignore=E731
+-   repo: git://github.com/Lucas-C/pre-commit-hooks.git
+    sha: v1.0.1
+    hooks:
+    -   id: remove-crlf
+    -   id: remove-tabs
+-   repo: git://github.com/trbs/pre-commit-hooks-trbs.git
+    sha: e233916fb2b4b9019b4a3cc0497994c7926fe36b
+    hooks:
+    -   id: forbid-executables
+        exclude: manage.py|setup.py
+-   repo: git://github.com/pre-commit/mirrors-scss-lint
+    sha: v0.52.0
+    hooks:
+    -   id: scss-lint
+-   repo: git://github.com/pre-commit/mirrors-csslint
+    sha: v1.0.5
+    hooks:
+    -   id: csslint
+-   repo: git://github.com/pre-commit/mirrors-eslint
+    sha: v3.18.0
+    hooks:
+    -   id: eslint
+-   repo: git://github.com/pre-commit/mirrors-jshint
+    sha: v2.9.4
+    hooks:
+    -   id: jshint
+-   repo: https://github.com/Lucas-C/pre-commit-hooks-safety
+    sha: v1.1.0
+    hooks:
+    -   id: python-safety-dependencies-check
