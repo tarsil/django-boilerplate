@@ -202,13 +202,14 @@ class Command(BaseCommand):
         return val
 
     def generate_profile_from_user(self, **user_data):
+        from slugify import slugify
         user = get_user_model().objects.get(email=user_data.get('email'))
         user.first_name = u'User'
         user.last_name = u'Admin'
 
         username = generate_username(user.username)
         profile = Profile.objects.create(
-            user=user, slug=username,
+            user=user, slug=slugify(username),
         )
         generate_profile_type(profile)
         user.save()
