@@ -13,7 +13,7 @@ def generate_username(first_name):
 
 def generate_profile_type(profile):
     profile_type = accounts.models.ProfileType.objects.create(
-        profile=profile, profile_type=accounts.models.Choices.Profiles.CONFIGURATIONS
+        profile=profile, profile_type=accounts.models.Choices.Profiles.ADMIN
     )
     return profile_type
 

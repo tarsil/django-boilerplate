@@ -203,12 +203,12 @@ class Command(BaseCommand):
 
     def generate_profile_from_user(self, **user_data):
         user = get_user_model().objects.get(email=user_data.get('email'))
-        user.first_name = u'LTPLabs'
+        user.first_name = u'User'
         user.last_name = u'Admin'
 
         username = generate_username(user.username)
         profile = Profile.objects.create(
-            user=user, slug=username, job_title=u'admin', job_level=u'super-admin',
+            user=user, slug=username,
         )
         generate_profile_type(profile)
         user.save()
