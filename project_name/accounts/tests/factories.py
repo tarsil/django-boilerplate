@@ -15,7 +15,7 @@ class ProfileTypeFactory(factory.django.DjangoModelFactory):
     FACTORY_FOR = accounts.models.ProfileType
 
     profile = factory.SubFactory(ProfileFactory)
-    profile_type = accounts.models.Choices.Profiles.OTHER
+    profile_type = accounts.models.Choices.Profiles.USER
 
 
 class UserFactory(factory.django.DjangoModelFactory):

@@ -1,9 +1,10 @@
-Django boilerplate - The kolaiah Solution for all!
+Django boilerplate
 ===============================================================================
 
 # To install from template base
 - `django-admin startproject --template=https://github.com/tiagoarasilva/django-boilerplate/archive/master.zip --extension=py,md,html,txt,less project_name`
 - Make sure you change the project name
+- The tests for the views won't work until you implement the solution to make the tests passing! TDD all the way.
 
 # Docker
 - Change the {{ project_name }} in your docker file to the desired name
