@@ -48,10 +48,6 @@ class ProfileTypeTests(TestCase):
         self.assertEqual(self.profile_type.profile_type, accounts.models.Choices.Profiles.ADMIN)
 
     def test_can_have_multiple_profile_types(self):
-        accounts.tests.factories.ProfileTypeFactory(
-            profile=self.profile,
-            profile_type=accounts.models.Choices.Profiles.MANAGER
-        )
 
         accounts.tests.factories.ProfileTypeFactory(
             profile=self.profile,
@@ -67,4 +63,4 @@ class ProfileTypeTests(TestCase):
             profile=self.profile
         )
 
-        self.assertEqual(profiles.count(), 3)
+        self.assertEqual(profiles.count(), 2)
