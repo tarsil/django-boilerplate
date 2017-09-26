@@ -52,6 +52,7 @@ BASE_INSTALLED_APPS = [
 
 INSTALLED_APPS = [
     'accounts',
+    'api',
 ] + BASE_INSTALLED_APPS
 
 MIDDLEWARE = [
