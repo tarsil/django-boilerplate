@@ -17,7 +17,6 @@ local_settings.py
 *.map
 .sass-cache/
 .coverage
-visual_art
 wag-labels
 useful
 renders
@@ -34,7 +33,6 @@ config.codekit
 *.map.css
 *.tar
 *.Rhistory
-# And ignore any TSV anywhere, used in data import
 *.tsv
 keys
 *.sql
@@ -50,15 +48,12 @@ dbbaks
 selenium-server-standalone*jar
 ingest
 
-
 # PyCharm metadata
 .idea
 
 # VS Code metadata
 .vscode
-
 .noseids
-
 app.wsgi
 uwsgi.ini
 celerybeat-schedule
