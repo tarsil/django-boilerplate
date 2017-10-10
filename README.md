@@ -1,6 +1,6 @@
 [![License: MIT](https://img.shields.io/github/license/vintasoftware/django-react-boilerplate.svg)](LICENSE.txt)
 
-Django Docker Boilerplate
+Django Docker Boilerplate - Django Rest Framework
 ===============================================================================
 
 # To install from template base
