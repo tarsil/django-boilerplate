@@ -1,4 +1,4 @@
--r deployment.txt
+-r common.txt
 coverage==3.7.1
 dj-database-url
 django-devserver==0.8.0

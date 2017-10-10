@@ -1,4 +1,4 @@
--r deployment.txt
+-r common.txt
 coverage==3.7.1
 dj-database-url
 django-devserver==0.8.0
@@ -18,9 +18,10 @@ pinocchio==0.3.1
 pre-commit
 pudb==2016.2
 PyVirtualDisplay==0.1.5
-PyYAML==3.11
+PyYAML==3.12
 sphinx==1.5.6
 sqlparse==0.2.3
+spec
 transifex-client==0.12.4
 unittest-data-provider==1.0.1
 virtualenv-tools==1.0
