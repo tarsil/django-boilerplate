@@ -1,12 +1,27 @@
-# development.settings will pull in (probably global) local_settings,
-# which messes things up
-from {{ project_name }}.settings import *
+"""
+testing.settings will pull in (probably global) local_settings,
+This is a special thanks to David Dyball for helping me understand and build something very familiar to me
+in terms of settings and how to set them up
+
+To all who contribute for this, thank you very much.
+"""
+from pluto.settings import *
 import os
 
+'''
+If you are using windows by default, the permissions to access subfolders for tests are disabled
+Activate them using NOSE_INCLUDE_EXE = 1 or an environment variable in your OS with the same name and value
+'''
+NOSE_INCLUDE_EXE = 1
+'''
+Other settings
+'''
 DEBUG = True
-
 TESTING = True
 
+'''
+Tells the django environment
+'''
 DJANGOENV = "testing"
 
 REUSE_DB = bool(int(os.environ.get("REUSE_DB", 0)))
@@ -30,28 +45,29 @@ POSTGIS_VERSION = (2, 1, 2)
 
 SOUTH_TESTS_MIGRATE = bool(int(os.environ.get("MIGRATE", 0)))
 
+# If you have Django Debug Toolbar installed
 DEBUG_TOOLBAR_PANELS = ()
 
+# Disable the Secure SSL Redirect (special thanks to @DD)
 SECURE_SSL_REDIRECT = False
 
-# ensure that no matter what's in local_settings we use that
+# Use this if you have local_settings.pt file
 DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
 MEDIA_URL = '/media/'
-
 STATIC_ROOT = '/tmp/assets-upload'
 STATIC_URL = "/static/"
-
 MEDIA_ROOT = '/tmp/media-root'
 
 # Roll in the API URLs so we can test everything in one go
 API_URLS_IN_MAIN = True
 
+# nosetests - NoseTestSuiteRunner
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
-# Shut up debugging spam from Django by default
+# Args passed to nose
 NOSE_ARGS = ["--logging-clear-handlers", "--logging-filter", "INFO"]
 
-# Give ourselves a test instance of redis
+# Give ourselves a test instance of redis (another special thanks to @DD for this)
 REDIS_SERVER = ('redis', 6379, 2)  # host, port, dbs
 REDIS_PASSWORD = None
 
@@ -79,7 +95,7 @@ CACHES = {
 
 # allow for a local override that won't be used by development
 try:
-    from {{ project_name }}.{{ project_name }}.testing.local_settings import *
+    from pluto.pluto.testing.local_settings import *
 except ImportError:
     pass
 
