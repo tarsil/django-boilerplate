@@ -4,7 +4,7 @@ Django Docker Boilerplate - Django Rest Framework
 ===============================================================================
 
 ## Note
-- This boilerplate is supporting now Django Channels.
+- This boilerplate is now supporting [Django Channels](https://channels.readthedocs.io/en/stable/index.html).
 - Read more about this [here](https://channels.readthedocs.io/en/stable/index.html)
 
 # To install from template base
