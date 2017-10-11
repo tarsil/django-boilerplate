@@ -48,6 +48,7 @@ BASE_INSTALLED_APPS = [
     'statici18n',
     'compressor',
     'rest_framework',
+    'channels',
 ]
 
 INSTALLED_APPS = [

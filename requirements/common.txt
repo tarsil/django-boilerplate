@@ -13,6 +13,7 @@ braintree==3.35.0
 bugsnag==3.1.0
 business-calendar==0.2.1
 celery==3.1.20
+channels==1.1.8
 cffi==1.10.0
 colorama==0.3.9
 cryptography==2.0.3
@@ -24,7 +25,7 @@ django-classy-tags==0.8.0
 django-annoying==0.10.3
 django-block-ip==0.2.0
 django-celery==3.1.17
-django-chartit==0.2.9
+django-channels==0.7.0
 django-countries==4.6.2
 django-compressor==2.2
 django-crispy-forms==1.6.1
