@@ -7,7 +7,7 @@ billiard==3.5.0.3
 bitly-api==0.3
 bleach==2.1.1
 boto==2.48.0
-botocore==1.7.73
+botocore==1.7.33
 boto3==1.4.7
 braintree==3.38.0
 bugsnag==3.2.0
@@ -68,7 +68,7 @@ isort==4.2.15
 Jinja2==2.9.6
 jsonfield==2.0.2
 libsass==0.13.3
-linkedin-0.1.5
+linkedin==0.1.5
 lockfile==0.12.2
 mandrill==1.0.57
 Markdown==2.6.9
