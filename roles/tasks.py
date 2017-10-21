@@ -6,7 +6,7 @@ from invoke import run, task
 
 
 @task
-def development():
+def development(context):
     run('pip3 install -U pip')
     run('pip3 install -r requirements/development.txt')
     run('supervisord -n')
