@@ -103,7 +103,7 @@ simplejson==3.11.1
 six==1.11.0
 unicodecsv==0.14.1
 urbanairship==3.0.1
-urllib3==1.10.4
+urllib3==1.22
 user-agents==1.1.0
 uWSGI==2.0.15
 vatnumber==1.2
