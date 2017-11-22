@@ -73,7 +73,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-    ]
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20
 }
 
 ROOT_URLCONF = '{{ project_name }}.urls'
@@ -118,9 +120,9 @@ STATICFILES_FINDERS = (
 STATICI18N_ROOT = os.path.join(SITE_ROOT, 'static')
 STATICFILES_DIRS += [STATICI18N_ROOT]
 
-STATIC_ROOT = '/tmp/ltp-static'
+STATIC_ROOT = '/tmp/pr-static'
 
-COMPRESS_ROOT = '/tmp/ltp-static'
+COMPRESS_ROOT = '/tmp/pr-static'
 COMPRESS_ENABLED = True
 
 WSGI_APPLICATION = '{{ project_name }}.wsgi.application'
