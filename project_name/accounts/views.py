@@ -1,4 +1,4 @@
-from django.contrib import messages, admin
+from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth import login, logout, update_session_auth_hash
 from django.core.urlresolvers import reverse

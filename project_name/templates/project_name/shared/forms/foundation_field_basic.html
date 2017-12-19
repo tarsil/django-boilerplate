@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="column {% if label_class %}{{ label_class }}{% endif %}">
+        {{ field.label }}{% if not hide_asterisks %}*{% endif %}
+    </div>
+    <div class="column {% if field_class %}{{ field_class }}{% endif %}">
+        {{ field }}
+    </div>
+    <small class="{% if error_class %}{{ error_class }}{% endif %}">
+        {{ field.errors }}
+    </small>
+</div>
