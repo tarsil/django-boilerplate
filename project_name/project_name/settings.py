@@ -51,6 +51,7 @@ BASE_INSTALLED_APPS = [
     'channels',
 ]
 
+
 INSTALLED_APPS = [
     'accounts',
     'api',
