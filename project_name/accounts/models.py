@@ -115,6 +115,7 @@ class User(AbstractUser):
     def display_name(self):
         return self.first_name + u' ' + self.last_name
 
+
 post_init.connect(User.post_init, sender=User)
 post_save.connect(User.post_save, sender=User)
 
@@ -124,5 +125,5 @@ class Permission(DjangoPermission):
     class Meta:
         proxy = True
         permissions = (
-            ('shorten_urls', 'Can shorten urls in the dashboard'),
+            ('shorten_urls', 'Can shorten urls anywhere'),
         )

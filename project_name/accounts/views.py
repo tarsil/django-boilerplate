@@ -43,7 +43,7 @@ class BaseUserSystemView(BaseTemplateMixin):
 
 
 class LoginView(FormView):
-    template_name = 'foundation6/auth/login.html'
+    template_name = '{{ project_name }}/auth/login.html'
     form_class = accounts.forms.LoginForm
 
     def get(self, request, *args, **kwargs):
@@ -67,7 +67,7 @@ class LoginView(FormView):
 
 
 class RegisterProfileView(FormView):
-    template_name = 'foundation6/raw/configurations/add-user.html'
+    template_name = '{{ project_name }}/application/configurations/add-user.html'
     form_class = accounts.forms.RegistrationForm
 
     def form_valid(self, form):
@@ -118,7 +118,7 @@ class LogoutView(View):
 
 
 class HomepageView(TemplateView):
-    template_name = 'foundation6/raw/homepage/homepage.html'
+    template_name = '{{ project_name }}/application/homepage/homepage.html'
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated():
@@ -127,7 +127,7 @@ class HomepageView(TemplateView):
 
 
 class ProfileView(BaseUserSystemView, TemplateView):
-    template_name = 'foundation6/raw/profiles/view-form.html'
+    template_name = '{{ project_name }}/application/profiles/view-form.html'
 
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data(**kwargs)
@@ -140,7 +140,7 @@ class ProfileView(BaseUserSystemView, TemplateView):
 
 
 class SettingsView(BaseUserSystemView, TemplateView):
-    template_name = 'foundation6/raw/configurations/settings.html'
+    template_name = '{{ project_name }}/application/configurations/settings.html'
 
     def get_context_data(self, **kwargs):
         context = super(SettingsView, self).get_context_data(**kwargs)
@@ -151,7 +151,7 @@ class SettingsView(BaseUserSystemView, TemplateView):
 
 
 class ProfileEditView(BaseUserSystemView, UpdateView):
-    template_name = 'foundation6/raw/profiles/edit-form.html'
+    template_name = '{{ project_name }}/application/profiles/edit-form.html'
 
     def get_form_class(self):
         if self.request.user.email == self.get_object().email:
@@ -189,7 +189,7 @@ class ProfileEditView(BaseUserSystemView, UpdateView):
 
 
 class ChangePasswordView(BaseUserSystemView, FormView):
-    template_name = 'foundation6/raw/profiles/set-password.html'
+    template_name = '{{ project_name }}/application/profiles/set-password.html'
     form_class = accounts.forms.ChangePasswordForm
 
     def form_valid(self, form):
@@ -228,7 +228,7 @@ class ChangePasswordView(BaseUserSystemView, FormView):
 
 
 class ListUsersView(BaseUserSystemView, ListView):
-    template_name = 'foundation6/raw/configurations/list-users.html'
+    template_name = '{{ project_name }}/application/configurations/list-users.html'
     paginate_by = 20
 
     def get_queryset(self):

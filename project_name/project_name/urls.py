@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from accounts.views import LoginView, LogoutView, HomepageView
 import accounts.urls
+import api.urls
 
 admin.autodiscover()
 
@@ -26,4 +27,7 @@ urlpatterns = [
     url(r'^login/$', LoginView.as_view(), name=('login')),
     url(r'^logout/$', LogoutView.as_view(), name=('logout')),
     url(r'^u/', include(accounts.urls.accounts_urlpatterns, namespace="accounts")),
+
+    # API
+    url(r'^api/v1', include(api.urls.api_url_pattern, namespace="api-v1")),
 ]
