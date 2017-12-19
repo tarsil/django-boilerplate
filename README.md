@@ -12,7 +12,7 @@ Django Docker Boilerplate - Django Rest Framework
 
 # To install from template base
 - `django-admin startproject --template=https://github.com/tiagoarasilva/django-boilerplate/archive/master.zip --extension=py,md,html,txt,scss,sass project_name`
-- Make sure you change the project name
+- Make sure you change the "project_name" to the name you gave to the project when running the previous command 
 - The tests for the views won't work until you implement the solution to make the tests passing! TDD oriented.
 
 # Docker
