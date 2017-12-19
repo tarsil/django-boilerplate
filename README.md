@@ -5,6 +5,7 @@ Django Docker Boilerplate - Django Rest Framework
 
 ## Note
 - The template is using foundation as a framework but this can be changed by your personal preference, you only need to update the references in the `static` and `templates` folder.
+- Inside the views located in accounts, there are some that you need to create your own files, such as the registration or change password, the code is there, you only need to place the HTML inside the proper directory. The only HTML placed and working is the login and the homepage to allow you to do a first run.
 - Comes with a bunch of plugins for many kinds of projects. Not all of them are needed, feel free to remove what yuo don't need
 - This boilerplate is now supporting [Django Channels](https://channels.readthedocs.io/en/stable/index.html).
 - Read more about this [here](https://channels.readthedocs.io/en/stable/index.html)
