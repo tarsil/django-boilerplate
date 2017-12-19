@@ -30,7 +30,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 SITE_ID = 1
 
-BASE_INSTALLED_APPS = [
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -49,12 +49,12 @@ BASE_INSTALLED_APPS = [
     'compressor',
     'rest_framework',
     'channels',
-]
 
-INSTALLED_APPS = [
+    # CUSTOM APPS
     'accounts',
     'api',
-] + BASE_INSTALLED_APPS
+]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

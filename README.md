@@ -5,11 +5,12 @@ Django Docker Boilerplate - Django Rest Framework
 
 ## Note
 - The template is using foundation as a framework but this can be changed by your personal preference, you only need to update the references in the `static` and `templates` folder.
+- Comes with a bunch of plugins for many kinds of projects. Not all of them are needed, feel free to remove what yuo don't need
 - This boilerplate is now supporting [Django Channels](https://channels.readthedocs.io/en/stable/index.html).
 - Read more about this [here](https://channels.readthedocs.io/en/stable/index.html)
 
 # To install from template base
-- `django-admin startproject --template=https://github.com/tiagoarasilva/django-boilerplate/archive/master.zip --extension=py,md,html,txt,less,scss,sass project_name`
+- `django-admin startproject --template=https://github.com/tiagoarasilva/django-boilerplate/archive/master.zip --extension=py,md,html,txt,scss,sass project_name`
 - Make sure you change the project name
 - The tests for the views won't work until you implement the solution to make the tests passing! TDD oriented.
 
