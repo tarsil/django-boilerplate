@@ -1,6 +1,6 @@
-{% extends '{{ project_name/application/core.html }}' %}
+{% templatetag openblock %} extends '{{ project_name/application/core.html }}' {%  templatetag closeblock %}
 
-{% block content %}
+{% templatetag openblock %} block content {%  templatetag closeblock %}
     <h1>Page is working</h1>
     <h6>Welcome {{ request.user.display_name }}</h6>
-{% endblock %}
+{% templatetag openblock %} endblock {%  templatetag closeblock %}

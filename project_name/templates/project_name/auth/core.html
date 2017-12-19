@@ -17,7 +17,7 @@
 
             <link rel="stylesheet" href="{% templatetag openblock %} static 'css/foundation/foundation.min.css'{%  templatetag closeblock %}"/>
             <link rel="stylesheet" href="{% templatetag openblock %} 'css/{{ project_name }}.css' {%  templatetag closeblock %}"/>
-    {% endblock %}
+    {% templatetag openblock %} endblock {%  templatetag closeblock %}
     {% templatetag openblock %} block secondary-css {% templatetag closeblock %}
 </head>
 <body>

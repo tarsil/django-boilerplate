@@ -1,15 +1,15 @@
-{% extends '{{ project_name }}/auth/core.html' %}
+{% templatetag openblock %} extends '{{ project_name }}/auth/core.html' {%  templatetag closeblock %}
 
-{% block content %}
+{% templatetag openblock %} content {%  templatetag closeblock %}
     <form class="log-in-form" action="." method="POST">
         {% csrf_token %}
         <h4 class="text-center">Log in with you email account</h4>
         <label>Email
-            {% include '{{ project_name }}/shared/forms/foundation_field.html' with field=form.email hide_required=1 %}
+            {% templatetag openblock %} include '{{ project_name }}/shared/forms/foundation_field.html' with field=form.email hide_required=1 {%  templatetag closeblock %}
         </label>
         <label>Password
-            {% include '{{ project_name }}/shared/forms/foundation_field.html' with field=form.password hide_required=1 %}
+            {% templatetag openblock %} include '{{ project_name }}/shared/forms/foundation_field.html' with field=form.password hide_required=1 {%  templatetag closeblock %}
         </label>
         <p><input type="submit" class="button expanded" value="Log in"></input></p>
     </form>
-{% endblock %}
+{% templatetag openblock %} endblock {%  templatetag closeblock %}
