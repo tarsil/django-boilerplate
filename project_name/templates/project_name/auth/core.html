@@ -23,11 +23,18 @@
 {% templatetag openblock %} endblock {% templatetag closeblock %}
 
 <main>
-    {% templatetag openblock %} block content {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
+    <div class="grid-x grid-padding-x">
+        <div class="large-12 medium-12 small-12 cell">
+            {% templatetag openblock %} block content {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
+        </div>
+    </div>
 </main>
 
 <footer>
-    <div id="footer">Copyright &copy; 2017 <a href="https://github.com/tiagoarasilva"><span>Tiago A. Silva</span></a>
+    <div class="grid-x grid-padding-x">
+        <div class="large-12 medium-12 small-12 cell">
+            <div id="footer">Copyright &copy; 2017 <a href="https://github.com/tiagoarasilva"><span>Tiago A. Silva</span></a></div>
+        </div>
     </div>
 </footer>
 

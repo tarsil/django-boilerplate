@@ -2,7 +2,7 @@
 
 {% templatetag openblock %} block content {%  templatetag closeblock %}
     <form class="log-in-form" action="." method="POST">
-        {% csrf_token %}
+        {% templatetag openblock %} csrf_token {% templatetag closeblock %}
         <h4 class="text-center">Log in with you email account</h4>
         <label>
             {% templatetag openblock %} include '{{ project_name }}/shared/forms/foundation_field.html' with field=form.email hide_required=1 {%  templatetag closeblock %}
