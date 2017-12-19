@@ -7,19 +7,19 @@ Django Docker Boilerplate - Django Rest Framework
 
 - The template is using foundation as a framework but this can be changed by your personal preference, you only need to update the references in the `static` and `templates` folder.
 - Inside the views located in accounts, there are some that you need to create your own files, such as the registration or change password, the code is there, you only need to place the HTML inside the proper directory. The only HTML placed and working is the login and the homepage to allow you to do a first run.
-- Comes with a bunch of plugins for many kinds of projects. Not all of them are needed, feel free to remove what yuo don't need
+- Comes with a bunch of plugins for many kinds of projects. Not all of them are needed, feel free to remove what you don't need
 - This boilerplate is now supporting [Django Channels](https://channels.readthedocs.io/en/stable/index.html).
 - Read more about this [here](https://channels.readthedocs.io/en/stable/index.html)
 
-# To install from template base
+# Installing from the template base
 
 - `django-admin startproject --template=https://github.com/tiagoarasilva/django-boilerplate/archive/master.zip --extension=py,md,html,txt,scss,sass project_name`
-- Make sure you change the "project_name" to the name you gave to the project when running the previous command 
-- The tests for the views won't work until you implement the solution to make the tests passing! TDD oriented.
+- Make sure you change the "project_name" to the name you desire for you project.
+- The tests for the views won't work until you implement the solution to make the tests passing, that means, once you implement the views!
 
 # Docker
 
-- Change the {{ project_name }} in your docker file to the desired name
+- Change the {{ project_name }} in your docker file to the desired name gave to the project when running the previous command.
 
 # {{ project_name }} Docker
 
@@ -33,7 +33,7 @@ If you desire, you can create somes aliases in your local machine, inside the ba
 
 E.g.:
 
-```Shell
+```shell
 alias shell_plus='docker-compose up exec {{ project_name }} bash && make run'
 alias run_server='docker-compose up exec {{ project_name }} bash && make shell'
 ```
