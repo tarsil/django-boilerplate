@@ -35,6 +35,7 @@ alias run_server='docker-compose up exec {{ project_name }} bash && make shell'
 
 # First run with the project
 - Inside docker container:
+    - Run `make migrate´. This is a special command inside the Makefile to run the first migrations or if you are on windows or you don't want to run the Makefile, just type `python {{ project_name }} migrate`
     - Run `python {{ project_name }} createsuperuser` to create a super user for yourself
     - It will create a "User Admin" by default as first and last name respectively. This can be changed in `accounts/management/commands/createsuperuser.py`
 
