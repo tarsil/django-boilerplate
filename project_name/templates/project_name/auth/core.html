@@ -1,6 +1,6 @@
-{% templatetag openblock %}load static{% templatetag closeblock %}
+{% templatetag openblock %}load static {%  templatetag closeblock %}
 {% templatetag openblock %}load statici18n{% templatetag closeblock %}
-{% templatetag openblock %}load i18n{% templatetag closeblock %}
+{% templatetag openblock %}load i18n {% templatetag closeblock %}
 {#{% load static %}#}
 {#{% load statici18n %}#}
 {#{% load i18n %}#}
@@ -10,33 +10,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>{% block page-title %}Login | LTPLabs{% endblock %}</title>
-    {% block head-css %}
-            <link rel="stylesheet" href="{% static 'css/foundation/foundation.min.css' %}" />
-            <link rel="stylesheet" href="{% static 'css/{{ project_name }}.css' %}" />
+	<title>{% templatetag openblock %} block page-title {% templatetag openblock %} Login | LTPLabs {% templatetag openblock %} endblock {% templatetag closeblock %}</title>
+    {% templatetag openblock %} block head-css {% templatetag closeblock %}
+{#            <link rel="stylesheet" href="{% static 'css/foundation/foundation.min.css' %}" />#}
+{#            <link rel="stylesheet" href="{% static 'css/{{ project_name }}.css' %}" />#}
+
+            <link rel="stylesheet" href="{% templatetag openblock %} static 'css/foundation/foundation.min.css'{%  templatetag closeblock %}"/>
+            <link rel="stylesheet" href="{% templatetag openblock %} 'css/{{ project_name }}.css' {%  templatetag closeblock %}"/>
     {% endblock %}
-    {% block secondary-css %}{% endblock %}
+    {% templatetag openblock %} block secondary-css {% templatetag closeblock %}
 </head>
 <body>
 
-{% block head-messages %}
+{% templatetag openblock %} block head-messages {%  templatetag closeblock %}
   <div class="inner-wrap">
-        {% include "{{ project_name }}/shared/partials/messages_display.html" %}
+        {% templatetag openblock %} include "{{ project_name }}/shared/partials/messages_display.html" %}
   </div>
-{% endblock %}
+{% templatetag openblock %} endblock {%  templatetag closeblock %}
 
 <main>
-    {% block content %}{% endblock %}
+    {% templatetag openblock %} block content {%  templatetag closeblock %}{% templatetag openblock %} endblock {%  templatetag closeblock %}
 </main>
 
 <footer>
     <div id="footer">Copyright &copy; 2017 <a href="https://github.com/tiagoarasilva"><span>Tiago A. Silva</span></a></div>
 </footer>
 
-{% block bottom-js %}
-    <script type='text/javascript' src="{% static 'js/vendor/jquery/jquery.min.js' %}"></script>
-    <script type='text/javascript' src="{% static 'js/vendor/foundation/foundation.min.js' %}"></script>
-{% endblock %}
-{% block secondary-js %}{% endblock %}
+{% templatetag openblock %} block bottom-js {% templatetag closeblock %}
+{#    <script type='text/javascript' src="{% static 'js/vendor/jquery/jquery.min.js' %}"></script>#}
+{#    <script type='text/javascript' src="{% static 'js/vendor/foundation/foundation.min.js' %}"></script>#}
+    <script type='text/javascript' src="{% templatetag openblock %} static 'js/vendor/jquery/jquery.min.js' {%  templatetag closeblock %}"></script>
+    <script type='text/javascript' src="{% templatetag openblock %} static 'js/vendor/foundation/foundation.min.js' {%  templatetag closeblock %}"></script>
+{% templatetag openblock %} endblock {%  templatetag closeblock %}
+{% templatetag openblock %} block secondary-js {% templatetag closeblock %}{% templatetag openblock %} endblock {%  templatetag closeblock %}
 </body>
 </html>
