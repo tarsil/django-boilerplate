@@ -4,12 +4,12 @@
     <form class="log-in-form" action="." method="POST">
         {% csrf_token %}
         <h4 class="text-center">Log in with you email account</h4>
-        <label>Email
+        <label>
             {% templatetag openblock %} include '{{ project_name }}/shared/forms/foundation_field.html' with field=form.email hide_required=1 {%  templatetag closeblock %}
         </label>
-        <label>Password
+        <label>
             {% templatetag openblock %} include '{{ project_name }}/shared/forms/foundation_field.html' with field=form.password hide_required=1 {%  templatetag closeblock %}
         </label>
         <p><input type="submit" class="button expanded" value="Log in"></input></p>
     </form>
-{% templatetag openblock %} endblock {%  templatetag closeblock %}
+{% templatetag openblock %} endblock {% templatetag closeblock %}

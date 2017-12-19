@@ -6,7 +6,7 @@ services:
     expose:
       - "5432"
     volumes:
-      - "'{{ project_name }}':/var/lib/postgresql/data"
+      - "{{ project_name }}:/var/lib/postgresql/data"
     ports:
       - "5432:5432"
 
@@ -16,7 +16,7 @@ services:
     expose:
       - "6379"
 
-  '{{ project_name }}':
+  {{ project_name }}:
     restart: always
     image: tiagoarasilva/titan:1.1.0
     depends_on:
@@ -46,5 +46,5 @@ services:
     command: bash -lc "pip install invoke jinja2 && invoke -r roles $${ROLE}"
 
 volumes:
-  '{{ project_name }}'_db_data:
+  {{ project_name }}_db_data:
     external: true

@@ -1,14 +1,14 @@
-{% if messages %}
-    {% for message in messages %}
-        {% if message.tags == "success" %}<div class="success callout" data-closable>{% endif %}
-        {% if message.tags == "error" %}<div class="alert callout" data-closable>{% endif %}
-        {% if message.tags == "info" %}<div class="primary callout" data-closable>{% endif %}
-        {% if message.tags == "warning" %}<div class="warning callout " data-closable>{% endif %}
-            <span>{{ message }}</span>
+{% templatetag openblock {% templatetag closeblock %}  if messages {% templatetag closeblock %} 
+    {% templatetag openblock {% templatetag closeblock %}  for message in messages {% templatetag closeblock %} 
+        {% templatetag openblock {% templatetag closeblock %}  if message.tags == "success" {% templatetag closeblock %} <div class="success callout" data-closable>{% templatetag openblock {% templatetag closeblock %}  endif {% templatetag closeblock %} 
+        {% templatetag openblock {% templatetag closeblock %}  if message.tags == "error" {% templatetag closeblock %} <div class="alert callout" data-closable>{% templatetag openblock {% templatetag closeblock %}  endif {% templatetag closeblock %} 
+        {% templatetag openblock {% templatetag closeblock %}  if message.tags == "info" {% templatetag closeblock %} <div class="primary callout" data-closable>{% templatetag openblock {% templatetag closeblock %}  endif {% templatetag closeblock %} 
+        {% templatetag openblock {% templatetag closeblock %}  if message.tags == "warning" {% templatetag closeblock %} <div class="warning callout " data-closable>{% templatetag openblock {% templatetag closeblock %}  endif {% templatetag closeblock %} 
+            <span>{% templatetag openvariable %} message {% templatetag closevariable %} </span>
             <button id="close-button"
-                    class="close-button close-button-{{ message.tags }}"
+                    class="close-button close-button-{% templatetag openvariable %} message.tags {% templatetag closevariable %}"
                     aria-label="Dismiss alert" type="button" data-close><span aria-hidden="true">&times;</span>
             </button>
         </div>
-    {% endfor %}
-{% endif %}
+    {% templatetag openblock {% templatetag closeblock %}  endfor {% templatetag closeblock %} 
+{% templatetag openblock {% templatetag closeblock %}  endif {% templatetag closeblock %} 
