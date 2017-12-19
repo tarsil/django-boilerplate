@@ -20,7 +20,7 @@ Django Docker Boilerplate - Django Rest Framework
 
 # {{ project_name }} Docker
 -  Run `docker volume create --name={{ project_name }}_db_data`
--  Run `docker-compose up`. It will download all the resources needed to build your docker image
+-  Run `docker-compose up`. It will download all the resources needed to build your docker containers
 -  Run `docker-compose exec {{ project_name }} bash` to go inside the container
 -  Run `make run` to start the server (inside docker container)
 -  Run `make shell` to start the shell_plus
