@@ -1,0 +1,39 @@
+{% load static from staticfiles %}
+{% load statici18n %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block page-title %}Login | LTPLabs{% endblock %}</title>
+    {% block head-css %}
+            <link rel="stylesheet" href="{% static 'css/foundation/foundation.min.css' %}" />
+            <link rel="stylesheet" href="{% static 'css/{{ project_name }}.css' %}" />
+    {% endblock %}
+    {% block secondary-css %}{% endblock %}
+</head>
+<body>
+
+{% block head-messages %}
+  <div class="inner-wrap">
+        {% include "{{ project_name }}/shared/partials/messages_display.html" %}
+  </div>
+{% endblock %}
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    <div id="footer">Copyright &copy; 2017 <a href="https://github.com/tiagoarasilva"><span>Tiago A. Silva</span></a></div>
+</footer>
+
+{% block bottom-js %}
+    <script type='text/javascript' src="{% static 'js/vendor/jquery/jquery.min.js' %}"></script>
+    <script type='text/javascript' src="{% static 'js/vendor/foundation/foundation.min.js' %}"></script>
+{% endblock %}
+{% block secondary-js %}{% endblock %}
+</body>
+</html>
