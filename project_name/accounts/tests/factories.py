@@ -24,6 +24,8 @@ class ProfileTypeFactory(factory.django.DjangoModelFactory):
 class UserFactory(factory.django.DjangoModelFactory):
     username = factory.Sequence(lambda n: "{{ project_name }}-%s" % n)
     password = "{{ project_name }}"
+    first_name = "Test"
+    last_name = 'User'
     email = factory.LazyAttribute(lambda u: "%s@{{ project_name }}.example.com" % u.username)
     profile = factory.RelatedFactory(ProfileFactory, name='user')
 
