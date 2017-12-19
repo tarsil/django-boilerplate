@@ -1,6 +1,6 @@
 {% templatetag openblock %} extends '{{ project_name }}/auth/core.html' {%  templatetag closeblock %}
 
-{% templatetag openblock %} content {%  templatetag closeblock %}
+{% templatetag openblock %} block content {%  templatetag closeblock %}
     <form class="log-in-form" action="." method="POST">
         {% csrf_token %}
         <h4 class="text-center">Log in with you email account</h4>
