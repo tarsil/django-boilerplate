@@ -79,8 +79,7 @@ Upgrade pip
 
 ### Templates
 
-Project-wide templates are located in templates/ template that defines
-these blocks:
+Project-wide templates are located in templates/
 
 #### manage.py
 
