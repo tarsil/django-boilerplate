@@ -113,8 +113,15 @@ TEMPLATES = [
     },
 ]
 
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.11/howto/static-files/
+
+STATIC_URL = '/static/'
+
 STATICFILES_DIRS = []
+
 STATICFILES_STORAGE = 'lib.storage.CachedStaticFilesStorage'
+
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -123,9 +130,12 @@ STATICFILES_FINDERS = (
 
 # Statici18n Config
 STATICI18N_ROOT = os.path.join(SITE_ROOT, 'static')
+
 STATICFILES_DIRS += [STATICI18N_ROOT]
 
-STATIC_ROOT = '/tmp/pr-static'
+STATIC_ROOT = os.path.join(SITE_ROOT, 'staticfiles')
+
+
 
 COMPRESS_ROOT = '/tmp/pr-static'
 COMPRESS_ENABLED = True
@@ -167,11 +177,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
-
-STATIC_URL = '/static/'
 
 # Pull slug max_length out ot
 SLUG_MAX_LENGTH = 64
