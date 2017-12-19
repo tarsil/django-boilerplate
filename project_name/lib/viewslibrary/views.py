@@ -1,46 +1,15 @@
 import json
 
 from django import http
-from django.views.generic import FormView
+from django.views.generic import FormView, UpdateView, CreateView, ListView
 from django.core.paginator import InvalidPage
 from django.core.urlresolvers import NoReverseMatch
 from django.core.urlresolvers import reverse, resolve
 from django.utils.functional import LazyObject
+from django.core.serializers.json import DjangoJSONEncoder
+from django.http.response import HttpResponse
+from lib.forms.generic import FormListView
 
-
-class MoreCapableJsonEncoder(json.JSONEncoder):
-    """
-    Two issues.
-
-    We need to support Django's LazyObject.
-
-    We need to support Money and Decimal objects
-    """
-
-    def default(self, o):
-        if isinstance(o, LazyObject):
-            # urgh, that's going to bite us at some point
-            o._setup()
-            return o._wrapped
-        else:
-            return json.JSONEncoder.default(self, o)
-
-
-def JsonResponse(data, status_code=200, cache_age=None, json_encoder_instance=None):
-    "A factory function that encodes the data into a HttpResponse."
-
-    if json_encoder_instance:
-        response_data = json_encoder_instance.encode(data)
-    else:
-        response_data = json.dumps(data, cls=MoreCapableJsonEncoder)
-
-    response = http.HttpResponse(response_data, content_type="application/json")
-    response.status_code = status_code
-    response['Access-Control-Allow-Origin'] = "*"
-    response['Access-Control-Allow-Headers'] = "Authorization"
-    if cache_age:
-        response['Cache-Control'] = "max-age=%i" % cache_age
-    return response
 
 
 class AjaxTemplateMixin(object):
@@ -48,6 +17,7 @@ class AjaxTemplateMixin(object):
     TODO: Also attempt to call ajax_get() etc instead of the usual
     ones if they are present?
     """
+
     def dispatch(self, request, **kwargs):
         if request.is_ajax():
             self.template_name = self.ajax_template_name
@@ -58,6 +28,7 @@ class AjaxLoadMoreMixin(object):
     """ Mixin for providing AJAX pagination facilities to any
     view that takes a "page" kwarg and provides a "page" variable in it's context data
     """
+
     def get(self, request, **kwargs):
         response = super(AjaxLoadMoreMixin, self).get(request, **kwargs)
         if request.is_ajax():
@@ -79,7 +50,7 @@ class AjaxLoadMoreMixin(object):
         return response
 
 
-class AjaxFormView(FormView):
+class AjaxView(object):
     FORM_INVALID_HTTP_STATUS_CODE = 400
     '''
     A specialised version of the Django FormView that provides default
@@ -113,7 +84,7 @@ class AjaxFormView(FormView):
         Handles non-AJAX submissions with valid data by calling FormView's
         implemenation of form_valid.
         '''
-        return super(AjaxFormView, self).form_valid(form)
+        return super().form_valid(form)
 
     def form_invalid(self, form):
         '''
@@ -147,7 +118,23 @@ class AjaxFormView(FormView):
         Handles non-AJAX submissions with invalid data by calling FormView's
         implementation of form_invalid.
         '''
-        return super(AjaxFormView, self).form_invalid(form)
+        return super().form_invalid(form)
+
+
+class AjaxFormView(AjaxView, FormView):
+    pass
+
+
+class AjaxUpdateView(AjaxView, UpdateView):
+    pass
+
+
+class AjaxCreateView(AjaxView, CreateView):
+    pass
+
+
+class AjaxListView(AjaxView, FormListView):
+    pass
 
 
 class AjaxFormDataView(AjaxFormView):
@@ -164,4 +151,25 @@ class AjaxFormDataView(AjaxFormView):
             data = {}
         form_kwargs['data'] = data
         return form_kwargs
+
+
+class JsonResponse(HttpResponse):
+
+    def __init__(self, data, url=None, encoder=DjangoJSONEncoder, safe=True,
+                 json_dumps_params=None, **kwargs):
+        if safe and not isinstance(data, dict):
+            raise TypeError(
+                'In order to allow non-dict objects to be serialized set the '
+                'safe parameter to False.'
+            )
+        if json_dumps_params is None:
+            json_dumps_params = {}
+        kwargs.setdefault('content_type', 'application/json')
+        data.update(
+            {'url': url}
+        )
+        data = json.dumps(data, cls=encoder, **json_dumps_params)
+        super().__init__(content=data, **kwargs)
+
+
 

@@ -20,7 +20,7 @@ def login_and_handle_data_stored_in_session(user, request):
     login(request, user)
 
 
-class BaseUserRawSystemView(BaseTemplateMixin):
+class BaseUserSystemView(BaseTemplateMixin):
 
     def get_object(self):
         user = accounts.models.User.objects.get(
@@ -34,7 +34,7 @@ class BaseUserRawSystemView(BaseTemplateMixin):
         return self.request.META.get("HTTP_REFERER", reverse('homepage'))
 
     def get_context_data(self, **kwargs):
-        context = super(BaseUserRawSystemView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context.update({
             'user': self.get_object(),
             'active': False
@@ -49,7 +49,7 @@ class LoginView(FormView):
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated():
             return HttpResponseRedirect(self.get_success_url())
-        return super(LoginView, self).get(request, *args, **kwargs)
+        return super().get(request, *args, **kwargs)
 
     def form_valid(self, form):
         user = form.get_user()
@@ -60,7 +60,7 @@ class LoginView(FormView):
         messages.add_message(
             self.request, messages.ERROR, _("The credentials that you've entered don't match any account")
         )
-        return super(LoginView, self).form_invalid(form)
+        return super().form_invalid(form)
 
     def get_success_url(self):
         return reverse('homepage')
@@ -87,7 +87,7 @@ class RegisterProfileView(FormView):
         except IntegrityError:
             msg = _("There was a problem processing your information, please try again")
             messages.add_message(self.request, messages.ERROR, _(msg))
-            return super(RegisterProfileView, self).form_valid(form)
+            return super().form_valid(form)
 
         user.save()
         user.get_or_create_profile(first_name=first_name, last_name=last_name)
@@ -105,7 +105,7 @@ class RegisterProfileView(FormView):
         for errors in form.errors.items():
             key, msg = errors
             messages.add_message(self.request, messages.ERROR, _(msg[0]))
-        return super(RegisterProfileView, self).form_invalid(form)
+        return super().form_invalid(form)
 
     def get_success_url(self):
         return reverse('homepage')
@@ -126,7 +126,7 @@ class HomepageView(TemplateView):
         return HttpResponseRedirect(reverse('login'))
 
 
-class ProfileView(BaseUserRawSystemView, TemplateView):
+class ProfileView(BaseUserSystemView, TemplateView):
     template_name = 'foundation6/raw/profiles/view-form.html'
 
     def get_context_data(self, **kwargs):
@@ -139,7 +139,7 @@ class ProfileView(BaseUserRawSystemView, TemplateView):
         return context
 
 
-class SettingsView(BaseUserRawSystemView, TemplateView):
+class SettingsView(BaseUserSystemView, TemplateView):
     template_name = 'foundation6/raw/configurations/settings.html'
 
     def get_context_data(self, **kwargs):
@@ -150,7 +150,7 @@ class SettingsView(BaseUserRawSystemView, TemplateView):
         return context
 
 
-class ProfileEditView(BaseUserRawSystemView, UpdateView):
+class ProfileEditView(BaseUserSystemView, UpdateView):
     template_name = 'foundation6/raw/profiles/edit-form.html'
 
     def get_form_class(self):
@@ -188,7 +188,7 @@ class ProfileEditView(BaseUserRawSystemView, UpdateView):
         return context
 
 
-class ChangePasswordView(BaseUserRawSystemView, FormView):
+class ChangePasswordView(BaseUserSystemView, FormView):
     template_name = 'foundation6/raw/profiles/set-password.html'
     form_class = accounts.forms.ChangePasswordForm
 
@@ -212,7 +212,7 @@ class ChangePasswordView(BaseUserRawSystemView, FormView):
         for errors in form.errors.items():
             key, msg = errors
             messages.add_message(self.request, messages.ERROR, _(msg[0]))
-        return super(ChangePasswordView, self).form_invalid(form)
+        return super().form_invalid(form)
 
     def get_context_data(self, **kwargs):
         context = super(ChangePasswordView, self).get_context_data(**kwargs)
@@ -227,7 +227,7 @@ class ChangePasswordView(BaseUserRawSystemView, FormView):
         })
 
 
-class ListUsersView(BaseUserRawSystemView, ListView):
+class ListUsersView(BaseUserSystemView, ListView):
     template_name = 'foundation6/raw/configurations/list-users.html'
     paginate_by = 20
 
