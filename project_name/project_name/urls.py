@@ -29,5 +29,5 @@ urlpatterns = [
     url(r'^u/', include(accounts.urls.accounts_urlpatterns, namespace="accounts")),
 
     # API
-    url(r'^api/v1', include(api.urls.api_url_pattern, namespace="api-v1")),
+    url(r'^api/v1/', include(api.urls.api_url_pattern, namespace="api-v1")),
 ]
