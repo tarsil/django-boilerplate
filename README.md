@@ -56,7 +56,7 @@ alias run_server='docker-compose exec {{ project_name }} bash && make shell'
 
 `make reusedb_unittests TESTONLY='profiles.tests.models_tests`
 
-### apps
+### Apps
 
 All of your Django "apps" go in this {{ project_name}} directory. These have models, views, forms, urls, 
 templates or all of the above. These should be Python packages you would add to
