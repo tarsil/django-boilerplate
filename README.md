@@ -1,6 +1,6 @@
 [![License: MIT](https://img.shields.io/github/license/vintasoftware/django-react-boilerplate.svg)](LICENSE.txt)
 
-Django Docker Boilerplate - Django Rest Framework
+Django Docker Boilerplate - Django Rest Framework with Redis, RabbitMQ and Celery
 ===============================================================================
 
 ## Note
@@ -92,10 +92,5 @@ Upgrade pip
 
 Project-wide templates are located in templates/
 
-#### manage.py
-
-The standard Django `manage.py`.
-
-#### settings.py
-
-Many good default settings for Django applications based on this template
+### Celery
+This projects integrates Redis with RabbitMQ and Celery
