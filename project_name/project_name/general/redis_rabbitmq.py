@@ -39,18 +39,18 @@ REDIS_HOST = os.environ.get('REDIS_PORT_6379_TCP_ADDR', 'redis')
 
 
 # RABBITMQ
-RABBIT_USER = 'rabbit_user'
-RABBIT_PASSWORD = 'rabbit_user_default_pass'
 RABBIT_HOSTNAME = os.environ.get('RABBIT_PORT_5672_TCP', 'rabbit')
 
 if RABBIT_HOSTNAME.startswith('tcp://'):
     RABBIT_HOSTNAME = RABBIT_HOSTNAME.split('//')[1]
 
 BROKER_URL = os.environ.get('BROKER_URL', '')
+BROKER_USER = 'rabbit_user'
+BROKER_PASSWORD = 'rabbit_user_default_pass'
 if not BROKER_URL:
     BROKER_URL = 'amqp://{user}:{password}@{hostname}/{vhost}/'.format(
-        user=os.environ.get('RABBIT_ENV_USER', RABBIT_USER),
-        password=os.environ.get('RABBIT_ENV_RABBITMQ_PASS', RABBIT_PASSWORD),
+        user=os.environ.get('RABBIT_ENV_USER', BROKER_USER),
+        password=os.environ.get('RABBIT_ENV_RABBITMQ_PASS', BROKER_PASSWORD),
         hostname=RABBIT_HOSTNAME,
         vhost=os.environ.get('RABBIT_ENV_VHOST', ''))
 
@@ -102,9 +102,6 @@ CELERYD_HIJACK_ROOT_LOGGER = False
 CELERYD_PREFETCH_MULTIPLIER = 1
 CELERYD_MAX_TASKS_PER_CHILD = 1000
 
-# UTC
-CELERY_TIMEZONE = 'UTC'
-CELERY_ENABLE_UTC = True
 
 # ACTIVATE SETTINGS
 djcelery.setup_loader()
