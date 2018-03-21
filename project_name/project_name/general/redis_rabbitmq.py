@@ -2,19 +2,10 @@
 The setup for rabbitmq message broker (we can also user Redis for this)
 '''
 import os
-import djcelery
 from kombu import Exchange, Queue, serialization
+import djcelery
 from {{ project_name }}.utils import make_memcached_cache
 
-
-# BROKER_HOST = '127.0.0.1'
-BROKER_PORT = 5672
-BROKER_VHOST = '/'
-BROKER_USER = '{{ project_name }}'
-BROKER_PASSWORD = '!!bro!!k!er'
-BROKER_TRANSPORT_OPTIONS = {'confirm_publish': True}
-CELERY_CREATE_MISSING_QUEUES = True
-CELERY_RESULT_PERSISTENT = True
 
 # REDIS
 
@@ -24,10 +15,13 @@ SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 MEMCACHED_ENDPOINTS = [
     '127.0.0.1:11211',
 ]
+
 CACHES = make_memcached_cache(MEMCACHED_ENDPOINTS)
+
 CACHES["default"] = {
     'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
 }
+
 CACHES['sessions'] = {
     'BACKEND': 'redis_cache.RedisCache',
     'LOCATION': 'redis:6379',
@@ -45,36 +39,42 @@ REDIS_HOST = os.environ.get('REDIS_PORT_6379_TCP_ADDR', 'redis')
 
 
 # RABBITMQ
-# CELERY_BROKER_HOST = '127.0.0.1'
-CELERY_BROKER_USER = 'rabbit_user'
-CELERY_BROKER_PASSWORD = 'rabbit_user_default_pass'
+RABBIT_USER = 'rabbit_user'
+RABBIT_PASSWORD = 'rabbit_user_default_pass'
 RABBIT_HOSTNAME = os.environ.get('RABBIT_PORT_5672_TCP', 'rabbit')
 
 if RABBIT_HOSTNAME.startswith('tcp://'):
     RABBIT_HOSTNAME = RABBIT_HOSTNAME.split('//')[1]
 
-CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', '')
-if not CELERY_BROKER_URL:
-    CELERY_BROKER_URL = 'amqp://{user}:{password}@{hostname}/{vhost}/'.format(
-        user=os.environ.get('RABBIT_ENV_USER', CELERY_BROKER_USER),
-        password=os.environ.get('RABBIT_ENV_RABBITMQ_PASS', CELERY_BROKER_PASSWORD),
+BROKER_URL = os.environ.get('BROKER_URL', '')
+if not BROKER_URL:
+    BROKER_URL = 'amqp://{user}:{password}@{hostname}/{vhost}/'.format(
+        user=os.environ.get('RABBIT_ENV_USER', RABBIT_USER),
+        password=os.environ.get('RABBIT_ENV_RABBITMQ_PASS', RABBIT_PASSWORD),
         hostname=RABBIT_HOSTNAME,
         vhost=os.environ.get('RABBIT_ENV_VHOST', ''))
 
-# We don't want to have dead connections stored on rabbitmq, so we have to negotiate using heartbeats
-CELERY_BROKER_HEARTBEAT = "?heartbeat=30"
-# if not CELERY_BROKER_URL.endswith(CELERY_BROKER_HEARTBEAT):
-#     CELERY_BROKER_URL += CELERY_BROKER_HEARTBEAT
 
-CELERY_BROKER_POOL_LIMIT = 1
-CELERY_BROKER_CONNECTION_TIMEOUT = 10
+# We don't want to have dead connections stored on rabbitmq, so we have to negotiate using heartbeats
+BROKER_HEARTBEAT = '?heartbeat=30'
+if not BROKER_URL.endswith(BROKER_HEARTBEAT):
+    BROKER_URL += BROKER_HEARTBEAT
+
+BROKER_POOL_LIMIT = 1
+BROKER_CONNECTION_TIMEOUT = 10
+
 
 # CELERY CONFIGURATION
 # CONFIGURE QUEUES, CURRENTLY WE HAVE ONLY ONE
+CELERY_CREATE_MISSING_QUEUES = True
+CELERY_RESULT_PERSISTENT = True
+
 CELERY_DEFAULT_QUEUE = 'default'
 CELERY_QUEUES = (
-    Queue('queue', Exchange('queue'), routing_key='queue'),
+    Queue('default', Exchange('default'), routing_key='default'),
+    Queue('{{ project_name }}', Exchange('{{ project_name }}'), routing_key='{{ project_name }}'),
 )
+
 
 # SENSIBLE SETTINGS FOR CELERY
 CELERY_ALWAYS_EAGER = False
