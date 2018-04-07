@@ -27,7 +27,7 @@ services:
 
   {{ project_name }}:
     restart: always
-    image: oratio/kale:1.0.0
+    image: oratio/libra:latest
     depends_on:
       - redis
       - rabbit
