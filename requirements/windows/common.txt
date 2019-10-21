@@ -97,7 +97,7 @@ python-linkedin==4.1
 pytz==2018.3
 rabbitmq==0.2.0
 raven==6.6.0
-requests==2.18.4
+requests==2.20.0
 redis==2.10.6
 reportlab==3.4.0
 restless==2.1.1
