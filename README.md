@@ -3,8 +3,8 @@
 Django Docker Boilerplate - Django Rest Framework with Redis, RabbitMQ and Celery
 ===============================================================================
 
-## Notice
-- This boilerplate soon will be out of maintenance as Django is moving towards python 3 support and Django 2
+# Notice
+- This boilerplate is no longer supported. Thank you very much for the contribution and it's now only supported the second version [Here](https://github.com/tiagoarasilva/django2-boilerplate)
 
 ## Note
 
